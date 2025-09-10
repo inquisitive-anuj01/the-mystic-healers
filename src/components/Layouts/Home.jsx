@@ -10,9 +10,6 @@ function Home() {
     <main className="min-h-screen">
       <Header />
       <Hero />
-      <Services />
-      <About />
-      <Footer />
     </main>
   )
 }

@@ -61,6 +61,88 @@ const services = [
 ];
 
 const ServicesCarousel = () => {
+
+      // <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16">
+      //   <div className="max-w-5xl mx-auto">
+      //     <div className="text-left float">
+      //       <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
+      //         Access the World's Finest{" "}
+      //         <span className="text-primary">Holistic Healers</span> Online
+      //       </h1>
+      //       <p className="text-lg font-bold md:font-normal sm:text-xl md:text-2xl xl:text-3xl text-white max-w-3xl mb-8">
+      //         Find holistic spiritual practitioners with The Mystic Healers,
+      //         and explore the power of spirituality and healing all in one
+      //         place.
+      //       </p>
+      //     </div>
+      //   </div>
+      // </div>
+
+      // <div className="absolute bottom-8 left-8 flex space-x-4 z-20">
+      //   <a
+      //     href="#"
+      //     className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-400 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+      //   >
+      //     <Instagram size={24} />
+      //   </a>
+      //   <a
+      //     href="#"
+      //     className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+      //     style={{ animationDelay: "1s" }}
+      //   >
+      //     <Facebook size={24} />
+      //   </a>
+      //   <a
+      //     href="#"
+      //     className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-green-600 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+      //     style={{ animationDelay: "2s" }}
+      //   >
+      //     <Users size={24} />
+      //   </a>
+      // </div>
+
+      // <div className="absolute bottom-8 right-8 z-20">
+      //   <div className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 w-80 shadow-2xl">
+      //     <h3 className="text-white text-xl font-semibold mb-2">
+      //       Are you interested?
+      //     </h3>
+      //     <p className="text-white/90 text-sm mb-4">
+      //       Register for early access to our mystical healing platform
+      //     </p>
+
+      //     {!isSubmitted ? (
+      //       <form onSubmit={handleEmailSubmit} className="space-y-4">
+      //         <input
+      //           type="email"
+      //           value={email}
+      //           onChange={(e) => setEmail(e.target.value)}
+      //           placeholder="Enter your email"
+      //           className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+      //           required
+      //         />
+      //         <Button
+      //           type="submit"
+      //           className="w-full bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg py-3 font-semibold transition-all duration-300 hover:scale-105"
+      //         >
+      //           Subscribe Now
+      //         </Button>
+      //       </form>
+      //     ) : (
+      //       <div className="text-center py-4">
+      //         <div className="text-green-400 text-lg font-semibold mb-2">
+      //           ✨ Thank you!
+      //         </div>
+      //         <p className="text-white/90 text-sm">
+      //           You'll be notified when we launch
+      //         </p>
+      //       </div>
+      //     )}
+      //   </div>
+      // </div>
+
+
+
+
   return (
     <>
       <style>

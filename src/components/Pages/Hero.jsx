@@ -1,52 +1,88 @@
-import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
+import { Instagram, Facebook, Users } from "lucide-react";
+import Galaxy from "../Pages/Galaxy.jsx";
+import audiotune from "../../assets/audiotune.mp3";
 
 export default function Hero() {
+  const audioRef = useRef(null);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio) {
+      audio.loop = true;
+      audio.muted = true;
+
+      const tryPlay = async () => {
+        try {
+          await audio.play();
+          console.log("Autoplay success ");
+        } catch (error) {
+          console.log("Autoplay blocked ");
+          const enableAudio = () => {
+            audio.muted = false;
+            audio.play();
+            document.removeEventListener("click", enableAudio);
+          };
+          document.addEventListener("click", enableAudio);
+        }
+      };
+
+      tryPlay();
+    }
+  }, []);
+
+
   return (
-    <section className="relative z-0 min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://res.cloudinary.com/dzvwqhzgf/image/upload/v1757404046/serene-mountain-landscape-with-person-meditating-a_1_fr7gae.jpg')`,
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-background/60 to-transparent"></div>
+    <section className=" bg-black relative z-0 min-h-screen flex items-center justify-center overflow-hidden">
+
+
+      <audio ref={audioRef} src={audiotune} preload="auto" />
+
+
+      {/* bg animation galaxy */}
+      <div className="absolute inset-0 -z-10">
+        <Galaxy
+          mouseInteraction={true}
+          mouseRepulsion={true}
+          density={1}
+          glowIntensity={0.7}
+          saturation={0.6}
+          hueShift={230}
+          twinkleIntensity={0.8}
+          rotationSpeed={0.15}
+          repulsionStrength={0.5}
+          autoCenterRepulsion={0}
+          starSpeed={0.5}
+          animationSpeed={1.1}
+        />
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-left float">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl xl:text-7xl font-bold text-foreground mb-4 leading-tight">
-              Access the World's Finest{" "}
-              <span className="text-primary">Holistic Healers</span> Online
-            </h1>
-            <p className="text-lg font-bold md:font-normal sm:text-xl md:text-2xl xl:text-3xl text-gray-800 max-w-3xl mb-8">
-              Find holistic spiritual practitioners with The Mystic Healers, and
-              explore the power of spirituality and healing all in one place.
-            </p>
 
-<Button
-  size="lg"
-  className="heartbeat-gentle bg-primary hover:bg-primary/90 text-primary-foreground 
-             w-44 sm:w-52 lg:w-60 
-             h-14 sm:h-16 lg:h-18
-             flex items-center justify-center
-             rounded-full text-base sm:text-lg lg:text-xl font-semibold 
-             transition-all duration-300 hover:scale-105"
->
-  Book Now
-</Button>
-
-          </div>
-        </div>
+      {/* social icons  */}
+      <div className="absolute bottom-8 left-8 flex space-x-4 z-20">
+        <a
+          href="#"
+          className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-gradient-to-br hover:from-purple-600 hover:via-pink-600 hover:to-orange-400 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+        >
+          <Instagram size={24} />
+        </a>
+        <a
+          href="#"
+          className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-blue-600 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+          style={{ animationDelay: "1s" }}
+        >
+          <Facebook size={24} />
+        </a>
+        <a
+          href="#"
+          className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-green-600 hover:text-white transition-all duration-300 hover:scale-110 float-gentle"
+          style={{ animationDelay: "2s" }}
+        >
+          <Users size={24} />
+        </a>
       </div>
 
-      {/* Floating Elements */}
-      <div className="absolute top-20 right-20 w-20 h-20 bg-primary/20 rounded-full blur-xl float"></div>
-      <div
-        className="absolute bottom-40 left-20 w-32 h-32 bg-secondary/20 rounded-full blur-xl float"
-        style={{ animationDelay: "2s" }}
-      ></div>
+
     </section>
   );
 }
