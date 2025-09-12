@@ -3,9 +3,7 @@ import {
   Instagram,
   Facebook,
   Twitter,
-  Linkedin,
   Youtube,
-  Music2,
   Users,
   Volume2,
   VolumeX,
@@ -37,14 +35,6 @@ const socials = [
     hoverClass: "hover:bg-[#1DA1F2] hover:border-transparent",
     aria: "Twitter",
   },
-  // {
-  //   key: "tiktok",
-  //   icon: <Music2 size={18} />,
-  //   href: "https://tiktok.com",
-  //   hoverClass:
-  //     "hover:bg-[linear-gradient(90deg,#69c9d0,#ee1d52)] hover:border-transparent",
-  //   aria: "TikTok",
-  // },
   {
     key: "youtube",
     icon: <Youtube size={18} />,
@@ -52,13 +42,6 @@ const socials = [
     hoverClass: "hover:bg-[#FF0000] hover:border-transparent",
     aria: "YouTube",
   },
-  // {
-  //   key: "linkedin",
-  //   icon: <Linkedin size={18} />,
-  //   href: "https://linkedin.com",
-  //   hoverClass: "hover:bg-[#0A66C2] hover:border-transparent",
-  //   aria: "LinkedIn",
-  // },
 ];
 
 export default function LandingPage() {
@@ -107,11 +90,8 @@ export default function LandingPage() {
 
         if (response.ok) {
           setIsSubmitted(true);
-          setTimeout(() => {
-            setEmail("");
-            setName("");
-            setIsSubmitted(false);
-          }, 6000);
+          setEmail("");
+          setName("");
         }
       } catch (err) {
         console.error(err);
@@ -120,6 +100,8 @@ export default function LandingPage() {
       }
     }
   };
+
+  
 
   const toggleAudio = () => {
     if (audioRef.current) {
@@ -139,12 +121,10 @@ export default function LandingPage() {
       <audio ref={audioRef} loop preload="auto" className="hidden">
         <source src={audiotune} type="audio/mpeg" />
       </audio>
-
       {/* Galaxy Background */}
       <div className="absolute inset-0 z-0">
         <GalaxyBackground />
       </div>
-
       {/* Audio Control Button */}
       <div className="absolute top-4 right-1 z-10">
         <button
@@ -155,92 +135,108 @@ export default function LandingPage() {
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
       </div>
-
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center top-10 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 ">
-        <div className="max-w-4xl mx-auto mb-6">
-          <p className="text-2xl text-purple-200 font-semibold mb-6 drop-shadow-lg animate-pulse ">
-            We're Launching Soon...!
-          </p>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-4">
-            Access the World's Finest <br />
-            <span className="text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text font-extrabold">
-              Holistic Healers
-            </span>{" "}
-            Online
-          </h1>
-          <p className="text-gray-100 text-base sm:text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Find holistic spiritual practitioners with The Mystic Healers, and
-            explore the power of spirituality and healing all in one place.
-          </p>
+      <div className="relative z-10 flex flex-col items-center top-10 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 font-inter ">
+        <div className="max-w-7xl mx-auto mb-6 px-4">
+          <div className="w-full mt-10">
+            <div className="text-left flex flex-wrap gap-x-2">
+              <span className="text-white text-xl sm:text-2xl md:text-4xl font-semibold text-shadow">
+                Access
+              </span>
+              <span className="text-white text-xl sm:text-2xl md:text-4xl text-shadow">
+                the
+              </span>
+              <span className="italic text-white text-xl sm:text-2xl md:text-4xl text-shadow">
+                World’s
+              </span>
+              <span className="text-white text-xl sm:text-2xl md:text-4xl font-bold text-shadow">
+                Finest
+              </span>
+            </div>
+
+            <div className="text-center">
+              <span className="uppercase text-white font-bold text-3xl sm:text-5xl md:text-7xl lg:text-8xl tracking-wide text-shadow">
+                Holistic Healers
+              </span>
+            </div>
+
+            <div className="text-right">
+              <span className="text-white text-xl sm:text-2xl md:text-4xl ">
+                Online.
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Form */}
-        <div className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 w-80 shadow-2xl">
+        <div className="bg-black/40 mt-10 backdrop-blur-md border border-white/30 rounded-2xl p-6 w-[100%] max-w-2xl shadow-2xl">
           {!isSubmitted ? (
             <>
-              <h3 className="text-white text-lg sm:text-xl font-semibold mb-2">
-                Be the First to Experience Magic ✨
+              <h3 className="text-white text-xl md:text-3xl  font-semibold mb-4 whitespace-nowrap text-center">
+                Be the First to Experience Magic
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <input
-                  type="text"
-                  value={name}
-                  onChange={handleNameChange}
-                  placeholder="Enter your name"
-                  className={`w-full px-4 py-3 mb-2 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                    !isValidName
-                      ? "border-red-400 focus:ring-red-400/50"
-                      : "border-white/30 focus:ring-purple-400/50"
-                  }`}
-                  required
-                />
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="text"
+                    value={name}
+                    onChange={handleNameChange}
+                    placeholder="Enter your name"
+                    className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                      !isValidName
+                        ? "border-red-400 focus:ring-red-400/50"
+                        : "border-white/30 focus:ring-purple-400/50"
+                    }`}
+                    required
+                  />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    placeholder="Enter your email"
+                    className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                      !isValidEmail
+                        ? "border-red-400 focus:ring-red-400/50"
+                        : "border-white/30 focus:ring-purple-400/50"
+                    }`}
+                    required
+                  />
+                </div>
                 {!isValidName && (
-                  <p className="text-red-300 text-xs mt-1">
+                  <p className="text-red-300 text-xs mt-1 text-left">
                     Please enter your name (min 2 chars)
                   </p>
                 )}
-
-                <input
-                  type="email"
-                  value={email}
-                  onChange={handleEmailChange}
-                  placeholder="Enter your email address"
-                  className={`w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                    !isValidEmail
-                      ? "border-red-400 focus:ring-red-400/50"
-                      : "border-white/30 focus:ring-purple-400/50"
-                  }`}
-                  required
-                />
                 {!isValidEmail && (
-                  <p className="text-red-300 text-xs mt-1">
+                  <p className="text-red-300 text-xs mt-1 text-left">
                     Please enter a valid email address
                   </p>
                 )}
 
-                <Button
-                  type="submit"
-                  disabled={
-                    isLoading ||
-                    !email ||
-                    !name ||
-                    !isValidEmail ||
-                    !isValidName
-                  }
-                  className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 
-                   hover:from-purple-700 hover:via-pink-700 hover:to-cyan-700 text-white rounded-lg py-3 
-                   font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-0 
-                   disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                >
-                  {isLoading ? "sending..." : "Join the Healing Journey"}
-                </Button>
+                {/* Button centered, not full width */}
+                <div className="flex justify-center">
+                  <Button
+                    type="submit"
+                    disabled={
+                      isLoading ||
+                      !email ||
+                      !name ||
+                      !isValidEmail ||
+                      !isValidName
+                    }
+                    className="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-lg px-6 py-3 cursor-pointer
+                     font-semibold transition-all duration-300 hover:scale-105 shadow-lg  
+                     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  >
+                    {isLoading ? "Sending..." : "Join the Healing Journey"}
+                  </Button>
+                </div>
               </form>
             </>
           ) : (
             <div className="text-center py-6">
-              <div className="text-emerald-400 text-2xl mb-3">
-                ✨ Welcome to the Journey! ✨
+              <div className="text-white text-2xl mb-3">
+                ✨ Welcome to the Journey...! ✨
               </div>
               <p className="text-white/90 text-sm">
                 Thank you for joining our mystical community. You'll be the
@@ -249,9 +245,7 @@ export default function LandingPage() {
             </div>
           )}
         </div>
-
-        {/* Mobile Join Button */}
-        <div className="mt-6 lg:hidden">
+        <div className="mt-12 lg:hidden">
           <Button
             onClick={() =>
               window.open(
@@ -265,10 +259,8 @@ export default function LandingPage() {
           </Button>
         </div>
       </div>
-
-      {/* Social Icons */}
+      x{/* Social Icons */}
       <div className="absolute bottom-12 sm:bottom-6 lg:bottom-4 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
-
         {socials.map((s) => (
           <a
             key={s.key}
@@ -281,12 +273,10 @@ export default function LandingPage() {
               s.hoverClass
             }
           >
-            {/* lucide icons inherit currentColor so text-white makes them white */}
             {s.icon}
           </a>
         ))}
       </div>
-
       {/* Desktop Join Button */}
       <div className="hidden lg:flex absolute bottom-8 right-8 z-20">
         <Button

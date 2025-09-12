@@ -7,8 +7,8 @@ const GalaxyBackground = memo(() => (
       mouseInteraction={true}
       mouseRepulsion={true}
       density={1}
-      glowIntensity={0.6}
-      saturation={1}
+      glowIntensity={0.3}
+      saturation={0}
       hueShift={220}
       twinkleIntensity={0.1}
       rotationSpeed={0.15}
