@@ -269,7 +269,8 @@ export default function LandingPage() {
       </div>
 
       {/* Social Icons */}
-      <div className="absolute bottom-4 sm:bottom-6 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10 mb-10">
+      <div className="absolute bottom-12 sm:bottom-6 lg:bottom-4 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
+
         {socials.map((s) => (
           <a
             key={s.key}
