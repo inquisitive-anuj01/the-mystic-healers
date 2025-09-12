@@ -269,7 +269,7 @@ export default function LandingPage() {
       </div>
 
       {/* Social Icons */}
-      <div className="absolute bottom-4 sm:bottom-6 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
+      <div className="absolute bottom-4 sm:bottom-6 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10 mb-10">
         {socials.map((s) => (
           <a
             key={s.key}
@@ -278,7 +278,7 @@ export default function LandingPage() {
             rel="noopener noreferrer"
             aria-label={s.aria}
             className={
-              "w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 shadow-2xl " +
+              "w-10 h-10 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 shadow-2xl " +
               s.hoverClass
             }
           >
