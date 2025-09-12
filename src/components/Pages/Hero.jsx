@@ -101,7 +101,7 @@ export default function LandingPage() {
     }
   };
 
-  
+
 
   const toggleAudio = () => {
     if (audioRef.current) {
@@ -116,7 +116,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col">
+    <div className="relative h-[100vh] overflow-hidden bg-black flex flex-col">
       {/* Background Audio */}
       <audio ref={audioRef} loop preload="auto" className="hidden">
         <source src={audiotune} type="audio/mpeg" />
