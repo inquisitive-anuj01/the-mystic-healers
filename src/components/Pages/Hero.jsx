@@ -1,8 +1,67 @@
 import { useState, useRef } from "react";
-import { Instagram, Facebook, Users, Volume2, VolumeX } from "lucide-react";
+import {
+  Instagram,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Youtube,
+  Music2,
+  Users,
+  Volume2,
+  VolumeX,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import GalaxyBackground from "./GalaxyBackground";
 import audiotune from "../../assets/audiotune.mp3";
+
+const socials = [
+  {
+    key: "instagram",
+    icon: <Instagram size={18} />,
+    href: "https://instagram.com",
+    // Instagram gradient (approx)
+    hoverClass:
+      "hover:bg-[linear-gradient(90deg,#f58529,#dd2a7b,#515bd4)] hover:border-transparent",
+    aria: "Instagram",
+  },
+  {
+    key: "facebook",
+    icon: <Facebook size={18} />,
+    href: "https://facebook.com",
+    hoverClass: "hover:bg-[#1877F2] hover:border-transparent",
+    aria: "Facebook",
+  },
+  {
+    key: "twitter",
+    icon: <Twitter size={18} />,
+    href: "https://twitter.com",
+    hoverClass: "hover:bg-[#1DA1F2] hover:border-transparent",
+    aria: "Twitter",
+  },
+  {
+    key: "tiktok",
+    icon: <Music2 size={18} />,
+    href: "https://tiktok.com",
+    // TikTok-ish cyan -> pink gradient
+    hoverClass:
+      "hover:bg-[linear-gradient(90deg,#69c9d0,#ee1d52)] hover:border-transparent",
+    aria: "TikTok",
+  },
+  {
+    key: "youtube",
+    icon: <Youtube size={18} />,
+    href: "https://youtube.com",
+    hoverClass: "hover:bg-[#FF0000] hover:border-transparent",
+    aria: "YouTube",
+  },
+  {
+    key: "linkedin",
+    icon: <Linkedin size={18} />,
+    href: "https://linkedin.com",
+    hoverClass: "hover:bg-[#0A66C2] hover:border-transparent",
+    aria: "LinkedIn",
+  },
+];
 
 export default function LandingPage() {
   const [email, setEmail] = useState("");
@@ -15,8 +74,6 @@ export default function LandingPage() {
   const audioRef = useRef(null);
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-
-  // simple validation: name is not empty and at least 2 chars
   const validateName = (name) => name.trim().length >= 2;
 
   const handleEmailChange = (e) => {
@@ -39,7 +96,7 @@ export default function LandingPage() {
     setIsValidEmail(validEmail);
 
     if (email && name && validEmail && validName) {
-      setIsLoading(true); // start loader
+      setIsLoading(true);
       try {
         const response = await fetch(
           "https://mystic-backend-nine.vercel.app/api/user/register",
@@ -90,7 +147,7 @@ export default function LandingPage() {
         <GalaxyBackground />
       </div>
 
-      {/* Audio Control Button - Top Right */}
+      {/* Audio Control Button */}
       <div className="absolute top-4 right-1 z-10">
         <button
           onClick={toggleAudio}
@@ -102,8 +159,7 @@ export default function LandingPage() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center">
-        {/* Headings */}
+      <div className="relative z-10 flex flex-col items-center top-10 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 ">
         <div className="max-w-4xl mx-auto mb-6">
           <p className="text-2xl text-purple-200 font-semibold mb-6 drop-shadow-lg animate-pulse ">
             We're Launching Soon...!
@@ -120,7 +176,8 @@ export default function LandingPage() {
             explore the power of spirituality and healing all in one place.
           </p>
         </div>
-        {/* Email + Name Form */}
+
+        {/* Form */}
         <div className="bg-black/40 backdrop-blur-md border border-white/30 rounded-2xl p-6 w-80 shadow-2xl">
           {!isSubmitted ? (
             <>
@@ -128,42 +185,42 @@ export default function LandingPage() {
                 Be the First to Experience Magic ✨
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <input
-                    type="text"
-                    value={name}
-                    onChange={handleNameChange}
-                    placeholder="Enter your name"
-                    className={`w-full px-4 py-3 mb-2 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                      !isValidName
-                        ? "border-red-400 focus:ring-red-400/50"
-                        : "border-white/30 focus:ring-purple-400/50"
-                    }`}
-                    required
-                  />
-                  {!isValidName && (
-                    <p className="text-red-300 text-xs mt-1">
-                      Please enter your name (min 2 chars)
-                    </p>
-                  )}
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={handleEmailChange}
-                    placeholder="Enter your email address"
-                    className={`w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
-                      !isValidEmail
-                        ? "border-red-400 focus:ring-red-400/50"
-                        : "border-white/30 focus:ring-purple-400/50"
-                    }`}
-                    required
-                  />
-                  {!isValidEmail && (
-                    <p className="text-red-300 text-xs mt-1">
-                      Please enter a valid email address
-                    </p>
-                  )}
-                </div>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={handleNameChange}
+                  placeholder="Enter your name"
+                  className={`w-full px-4 py-3 mb-2 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                    !isValidName
+                      ? "border-red-400 focus:ring-red-400/50"
+                      : "border-white/30 focus:ring-purple-400/50"
+                  }`}
+                  required
+                />
+                {!isValidName && (
+                  <p className="text-red-300 text-xs mt-1">
+                    Please enter your name (min 2 chars)
+                  </p>
+                )}
+
+                <input
+                  type="email"
+                  value={email}
+                  onChange={handleEmailChange}
+                  placeholder="Enter your email address"
+                  className={`w-full px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                    !isValidEmail
+                      ? "border-red-400 focus:ring-red-400/50"
+                      : "border-white/30 focus:ring-purple-400/50"
+                  }`}
+                  required
+                />
+                {!isValidEmail && (
+                  <p className="text-red-300 text-xs mt-1">
+                    Please enter a valid email address
+                  </p>
+                )}
+
                 <Button
                   type="submit"
                   disabled={
@@ -173,38 +230,12 @@ export default function LandingPage() {
                     !isValidEmail ||
                     !isValidName
                   }
-                  className="relative z-20 cursor-pointer w-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 
-     hover:from-purple-700 hover:via-pink-700 hover:to-cyan-700 text-white rounded-lg py-3 
-     font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-0 
-     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full bg-gradient-to-r from-purple-600 via-pink-600 to-cyan-600 
+                   hover:from-purple-700 hover:via-pink-700 hover:to-cyan-700 text-white rounded-lg py-3 
+                   font-semibold transition-all duration-300 hover:scale-105 shadow-lg border-0 
+                   disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center gap-2 pointer-events-none">
-                      <svg
-                        className="animate-spin h-5 w-5 text-white"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                      >
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                        />
-                      </svg>
-                      sending...
-                    </div>
-                  ) : (
-                    "Join the Healing Journey"
-                  )}
+                  {isLoading ? "sending..." : "Join the Healing Journey"}
                 </Button>
               </form>
             </>
@@ -220,7 +251,9 @@ export default function LandingPage() {
             </div>
           )}
         </div>
-        <div className="mt-8 lg:hidden">
+
+        {/* Mobile Join Button */}
+        <div className="mt-6 lg:hidden">
           <Button
             onClick={() =>
               window.open(
@@ -235,24 +268,27 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Social Icons  */}
-      <div className="absolute bottom-4 sm:bottom-8 w-full flex justify-center lg:justify-start lg:left-8 space-x-3 sm:space-x-4 z-10 mt-5 sm:mt-6 ">
-        <a
-          href="#"
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-gradient-to-br hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 transition-all duration-300 hover:scale-110 shadow-2xl group"
-          aria-label="Follow us on Instagram"
-        >
-          <Instagram size={20} />
-        </a>
-        <a
-          href="#"
-          className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-all duration-300 hover:scale-110 shadow-2xl group"
-          aria-label="Follow us on Facebook"
-        >
-          <Facebook size={20} />
-        </a>
+      {/* Social Icons */}
+      <div className="absolute bottom-4 sm:bottom-6 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
+        {socials.map((s) => (
+          <a
+            key={s.key}
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.aria}
+            className={
+              "w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 shadow-2xl " +
+              s.hoverClass
+            }
+          >
+            {/* lucide icons inherit currentColor so text-white makes them white */}
+            {s.icon}
+          </a>
+        ))}
       </div>
 
+      {/* Desktop Join Button */}
       <div className="hidden lg:flex absolute bottom-8 right-8 z-20">
         <Button
           onClick={() =>
