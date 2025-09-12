@@ -101,8 +101,6 @@ export default function LandingPage() {
     }
   };
 
-
-
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isMuted) {
@@ -135,8 +133,11 @@ export default function LandingPage() {
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
       </div>
+
+
+
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center top-10 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 font-inter ">
+      <div className="relative z-10 flex flex-col items-center top-0 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 font-inter ">
         <div className="max-w-7xl mx-auto mb-6 px-4">
           <div className="w-full mt-10">
             <div className="text-left flex flex-wrap gap-x-2">
@@ -259,8 +260,10 @@ export default function LandingPage() {
           </Button>
         </div>
       </div>
-      x{/* Social Icons */}
-      <div className="absolute bottom-12 sm:bottom-6 lg:bottom-4 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
+
+      
+      {/* Social Icons */}
+      <div className="absolute bottom-14 sm:bottom-6 lg:bottom-4 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
         {socials.map((s) => (
           <a
             key={s.key}
