@@ -18,8 +18,7 @@ const socials = [
   {
     key: "instagram",
     icon: <Instagram size={18} />,
-    href: "https://instagram.com",
-    // Instagram gradient (approx)
+    href: "https://www.instagram.com/themystichealers",
     hoverClass:
       "hover:bg-[linear-gradient(90deg,#f58529,#dd2a7b,#515bd4)] hover:border-transparent",
     aria: "Instagram",
@@ -27,40 +26,39 @@ const socials = [
   {
     key: "facebook",
     icon: <Facebook size={18} />,
-    href: "https://facebook.com",
+    href: "https://www.facebook.com/themystichealers11",
     hoverClass: "hover:bg-[#1877F2] hover:border-transparent",
     aria: "Facebook",
   },
   {
     key: "twitter",
     icon: <Twitter size={18} />,
-    href: "https://twitter.com",
+    href: "https://x.com/mystichealers11?s=21",
     hoverClass: "hover:bg-[#1DA1F2] hover:border-transparent",
     aria: "Twitter",
   },
-  {
-    key: "tiktok",
-    icon: <Music2 size={18} />,
-    href: "https://tiktok.com",
-    // TikTok-ish cyan -> pink gradient
-    hoverClass:
-      "hover:bg-[linear-gradient(90deg,#69c9d0,#ee1d52)] hover:border-transparent",
-    aria: "TikTok",
-  },
+  // {
+  //   key: "tiktok",
+  //   icon: <Music2 size={18} />,
+  //   href: "https://tiktok.com",
+  //   hoverClass:
+  //     "hover:bg-[linear-gradient(90deg,#69c9d0,#ee1d52)] hover:border-transparent",
+  //   aria: "TikTok",
+  // },
   {
     key: "youtube",
     icon: <Youtube size={18} />,
-    href: "https://youtube.com",
+    href: "https://youtube.com/@themystichealers?feature=shared",
     hoverClass: "hover:bg-[#FF0000] hover:border-transparent",
     aria: "YouTube",
   },
-  {
-    key: "linkedin",
-    icon: <Linkedin size={18} />,
-    href: "https://linkedin.com",
-    hoverClass: "hover:bg-[#0A66C2] hover:border-transparent",
-    aria: "LinkedIn",
-  },
+  // {
+  //   key: "linkedin",
+  //   icon: <Linkedin size={18} />,
+  //   href: "https://linkedin.com",
+  //   hoverClass: "hover:bg-[#0A66C2] hover:border-transparent",
+  //   aria: "LinkedIn",
+  // },
 ];
 
 export default function LandingPage() {
