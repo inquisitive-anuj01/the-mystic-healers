@@ -91,24 +91,24 @@ export default function LandingPage() {
       </div>
 
       {/* Audio Control Button - Top Right */}
-      <div className="absolute top-6 right-6 z-30">
+      <div className="absolute top-4 right-1 z-10">
         <button
           onClick={toggleAudio}
-          className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-2xl"
+          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-2xl cursor-pointer"
           aria-label={isMuted ? "Unmute audio" : "Mute audio"}
         >
-          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+          {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center flex-1 px-4 sm:px-6 lg:px-8 text-center">
+      <div className="relative z-10 flex flex-col items-center top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center">
         {/* Headings */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mx-auto mb-6">
           <p className="text-2xl text-purple-200 font-semibold mb-6 drop-shadow-lg animate-pulse ">
             We're Launching Soon...!
           </p>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-tight mb-4">
             Access the World's Finest <br />
             <span className="text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-cyan-300 bg-clip-text font-extrabold">
               Holistic Healers
@@ -220,7 +220,7 @@ export default function LandingPage() {
             </div>
           )}
         </div>
-        <div className="mt-12 lg:hidden">
+        <div className="mt-8 lg:hidden">
           <Button
             onClick={() =>
               window.open(
@@ -235,8 +235,8 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Social Icons (bottom-left) */}
-      <div className="absolute bottom-6 sm:bottom-8 w-full flex justify-center lg:justify-start lg:left-8 space-x-3 sm:space-x-4 z-20">
+      {/* Social Icons  */}
+      <div className="absolute bottom-4 sm:bottom-8 w-full flex justify-center lg:justify-start lg:left-8 space-x-3 sm:space-x-4 z-10 mt-5 sm:mt-6 ">
         <a
           href="#"
           className="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-gradient-to-br hover:from-pink-500 hover:via-purple-500 hover:to-indigo-500 transition-all duration-300 hover:scale-110 shadow-2xl group"
@@ -253,7 +253,6 @@ export default function LandingPage() {
         </a>
       </div>
 
-      {/* Join Our Community Button (large screen bottom-right) */}
       <div className="hidden lg:flex absolute bottom-8 right-8 z-20">
         <Button
           onClick={() =>
