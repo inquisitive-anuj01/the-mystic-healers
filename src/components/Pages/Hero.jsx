@@ -127,7 +127,7 @@ export default function LandingPage() {
   };
 
   return (
-    <div className="relative h-[100vh] overflow-hidden bg-black flex flex-col">
+    <div className="relative min-h-screen overflow-hidden bg-black flex flex-col">
 
       {/*  Audio */}
       <audio ref={audioRef} loop preload="auto" className="hidden">
@@ -287,7 +287,7 @@ export default function LandingPage() {
 
       {/* Social Icons */}
       <div
-        className="absolute bottom-14 sm:bottom-6 lg:bottom-4 w-full 
+        className="absolute bottom-22 sm:bottom-6 lg:bottom-4 w-full 
                 flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10"
       >
         {socials.map((s) => (
