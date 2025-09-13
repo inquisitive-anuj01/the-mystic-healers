@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import {
   Instagram,
   Facebook,
-  Twitter,
+  // Twitter,
   Youtube,
   Users,
   Volume2,
@@ -11,6 +11,8 @@ import {
 import { Button } from "@/components/ui/button";
 import GalaxyBackground from "./GalaxyBackground";
 import audiotune from "../../assets/audiotune.mp3";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaTiktok } from "react-icons/fa";
 
 const socials = [
   {
@@ -30,9 +32,9 @@ const socials = [
   },
   {
     key: "twitter",
-    icon: <Twitter size={18} />,
+    icon: <FaXTwitter size={18} />,
     href: "https://x.com/mystichealers11?s=21",
-    hoverClass: "hover:bg-[#1DA1F2] hover:border-transparent",
+    hoverClass: "hover:bg-[linear-gradient(#000000,#FFFFFF)] hover:border-transparent",
     aria: "Twitter",
   },
   {
@@ -41,6 +43,13 @@ const socials = [
     href: "https://youtube.com/@themystichealers?feature=shared",
     hoverClass: "hover:bg-[#FF0000] hover:border-transparent",
     aria: "YouTube",
+  },
+  {
+    key: "tiktok",
+    icon: <FaTiktok size={18} />,
+    href: "https://www.tiktok.com/@themystichealers",
+    hoverClass: "hover:bg-[linear-gradient(#EE1D52,#25F4EE,#000000)]  hover:border-transparent",
+    aria: "TikTok",
   },
 ];
 
@@ -57,6 +66,7 @@ export default function LandingPage() {
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validateName = (name) => name.trim().length >= 2;
 
+  // validators
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
@@ -69,6 +79,7 @@ export default function LandingPage() {
     setIsValidName(value ? validateName(value) : true);
   };
 
+  // submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validName = validateName(name);
@@ -101,6 +112,8 @@ export default function LandingPage() {
     }
   };
 
+  // mute unmute toggle button
+
   const toggleAudio = () => {
     if (audioRef.current) {
       if (isMuted) {
@@ -115,26 +128,35 @@ export default function LandingPage() {
 
   return (
     <div className="relative h-[100vh] overflow-hidden bg-black flex flex-col">
-      {/* Background Audio */}
+
+      {/*  Audio */}
       <audio ref={audioRef} loop preload="auto" className="hidden">
         <source src={audiotune} type="audio/mpeg" />
       </audio>
+
       {/* Galaxy Background */}
       <div className="absolute inset-0 z-0">
         <GalaxyBackground />
       </div>
-      {/* Audio Control Button */}
-      <div className="absolute top-4 right-1 z-10">
+
+      {/* Audio Control Button with inline "Click me" */}
+      <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
+        {/* Animated text with arrow */}
+        <span className="flex items-center text-white text-sm font-medium animate-bounce-x">
+          Click me →
+        </span>
+
         <button
           onClick={toggleAudio}
-          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300 hover:scale-110 shadow-2xl cursor-pointer"
+          className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 
+               rounded-full flex items-center justify-center text-white 
+               hover:bg-white/20 transition-all duration-300 hover:scale-110 
+               shadow-2xl cursor-pointer"
           aria-label={isMuted ? "Unmute audio" : "Mute audio"}
         >
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
       </div>
-
-
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center top-0 md:top-16 flex-1 px-4 sm:px-6 lg:px-8 text-center scale-90 sm:scale-100 font-inter ">
@@ -237,7 +259,7 @@ export default function LandingPage() {
           ) : (
             <div className="text-center py-6">
               <div className="text-white text-2xl mb-3">
-                ✨ Welcome to the Journey...! ✨
+                 Welcome to the Journey...! 
               </div>
               <p className="text-white/90 text-sm">
                 Thank you for joining our mystical community. You'll be the
@@ -246,6 +268,8 @@ export default function LandingPage() {
             </div>
           )}
         </div>
+
+        {/* join our community button for mobile */}
         <div className="mt-12 lg:hidden">
           <Button
             onClick={() =>
@@ -261,9 +285,11 @@ export default function LandingPage() {
         </div>
       </div>
 
-      
       {/* Social Icons */}
-      <div className="absolute bottom-14 sm:bottom-6 lg:bottom-4 w-full flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10">
+      <div
+        className="absolute bottom-14 sm:bottom-6 lg:bottom-4 w-full 
+                flex flex-wrap justify-center lg:justify-start lg:left-8 gap-3 z-10"
+      >
         {socials.map((s) => (
           <a
             key={s.key}
@@ -272,14 +298,26 @@ export default function LandingPage() {
             rel="noopener noreferrer"
             aria-label={s.aria}
             className={
-              "w-10 h-10 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110 shadow-2xl " +
+              "group relative w-10 h-10 sm:w-14 sm:h-14 bg-white/10 backdrop-blur-md " +
+              "border border-white/20 rounded-full flex items-center justify-center " +
+              "text-white transition-all duration-300 transform hover:scale-110 shadow-2xl " +
               s.hoverClass
             }
           >
             {s.icon}
+
+            {/* Tooltip */}
+            <span
+              className="absolute bottom-full mb-2 px-2 py-1 rounded-md 
+                       bg-black/80 text-white text-xs opacity-0 group-hover:opacity-100 
+                       transition-opacity duration-150 whitespace-nowrap"
+            >
+              {s.aria}
+            </span>
           </a>
         ))}
       </div>
+
       {/* Desktop Join Button */}
       <div className="hidden lg:flex absolute bottom-8 right-8 z-20">
         <Button
