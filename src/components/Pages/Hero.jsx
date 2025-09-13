@@ -34,7 +34,8 @@ const socials = [
     key: "twitter",
     icon: <FaXTwitter size={18} />,
     href: "https://x.com/mystichealers11?s=21",
-    hoverClass: "hover:bg-[linear-gradient(#000000,#FFFFFF)] hover:border-transparent",
+    hoverClass:
+      "hover:bg-[linear-gradient(#000000,#FFFFFF)] hover:border-transparent",
     aria: "Twitter",
   },
   {
@@ -48,7 +49,8 @@ const socials = [
     key: "tiktok",
     icon: <FaTiktok size={18} />,
     href: "https://www.tiktok.com/@themystichealers",
-    hoverClass: "hover:bg-[linear-gradient(#EE1D52,#25F4EE,#000000)]  hover:border-transparent",
+    hoverClass:
+      "hover:bg-[linear-gradient(#EE1D52,#25F4EE,#000000)]  hover:border-transparent",
     aria: "TikTok",
   },
 ];
@@ -128,7 +130,6 @@ export default function LandingPage() {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-black flex flex-col">
-
       {/*  Audio */}
       <audio ref={audioRef} loop preload="auto" className="hidden">
         <source src={audiotune} type="audio/mpeg" />
@@ -141,17 +142,19 @@ export default function LandingPage() {
 
       {/* Audio Control Button with inline "Click me" */}
       <div className="absolute top-4 right-4 z-10 flex items-center gap-2">
-        {/* Animated text with arrow */}
-        <span className="flex items-center text-white text-sm font-medium animate-bounce-x">
-          Click me →
-        </span>
+        {/* Show text only when muted */}
+        {isMuted && (
+          <span className="flex items-center text-white text-sm font-medium animate-bounce-x">
+            Click me →
+          </span>
+        )}
 
         <button
           onClick={toggleAudio}
           className="w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 
-               rounded-full flex items-center justify-center text-white 
-               hover:bg-white/20 transition-all duration-300 hover:scale-110 
-               shadow-2xl cursor-pointer"
+         rounded-full flex items-center justify-center text-white 
+         hover:bg-white/20 transition-all duration-300 hover:scale-110 
+         shadow-2xl cursor-pointer"
           aria-label={isMuted ? "Unmute audio" : "Mute audio"}
         >
           {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
@@ -259,7 +262,7 @@ export default function LandingPage() {
           ) : (
             <div className="text-center py-6">
               <div className="text-white text-2xl mb-3">
-                 Welcome to the Journey...! 
+                Welcome to the Journey...!
               </div>
               <p className="text-white/90 text-sm">
                 Thank you for joining our mystical community. You'll be the
