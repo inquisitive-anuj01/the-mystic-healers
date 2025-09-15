@@ -71,7 +71,7 @@ export default function LandingPage() {
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validateName = (name) => name.trim().length >= 2;
-  const validatePhone = (phone) => /^\d{8,15}$/.test(phone.trim());
+  const validatePhone = (phone) => /^\d{10}$/.test(phone.trim());
   const validateCity = (city) => city.trim().length >= 2;
 
   const handleEmailChange = (e) => {
@@ -264,6 +264,7 @@ export default function LandingPage() {
                     value={phone}
                     onChange={handlePhoneChange}
                     placeholder="Enter your phone number"
+                    maxLength={10}
                     className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
                       !isValidPhone
                         ? "border-red-400 focus:ring-red-400/50"
@@ -297,9 +298,10 @@ export default function LandingPage() {
                 )}
                 {!isValidPhone && (
                   <p className="text-red-300 text-xs mt-1 text-left">
-                    Please enter a valid phone number (8-15 digits)
+                    Phone number must be exactly 10 digits
                   </p>
                 )}
+
                 {!isValidCity && (
                   <p className="text-red-300 text-xs mt-1 text-left">
                     Please enter your city (min 2 chars)
