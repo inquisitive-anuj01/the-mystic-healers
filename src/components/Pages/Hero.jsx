@@ -58,38 +58,65 @@ const socials = [
 export default function LandingPage() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isValidEmail, setIsValidEmail] = useState(true);
   const [isValidName, setIsValidName] = useState(true);
+  const [isValidPhone, setIsValidPhone] = useState(true);
+  const [isValidCity, setIsValidCity] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef(null);
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validateName = (name) => name.trim().length >= 2;
+  const validatePhone = (phone) => /^\d{8,15}$/.test(phone.trim());
+  const validateCity = (city) => city.trim().length >= 2;
 
-  // validators
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
     setIsValidEmail(value ? validateEmail(value) : true);
   };
-
   const handleNameChange = (e) => {
     const value = e.target.value;
     setName(value);
     setIsValidName(value ? validateName(value) : true);
   };
+  const handlePhoneChange = (e) => {
+    const value = e.target.value;
+    setPhone(value);
+    setIsValidPhone(value ? validatePhone(value) : true);
+  };
+  const handleCityChange = (e) => {
+    const value = e.target.value;
+    setCity(value);
+    setIsValidCity(value ? validateCity(value) : true);
+  };
 
-  // submit handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validName = validateName(name);
     const validEmail = validateEmail(email);
+    const validPhone = validatePhone(phone);
+    const validCity = validateCity(city);
+
     setIsValidName(validName);
     setIsValidEmail(validEmail);
+    setIsValidPhone(validPhone);
+    setIsValidCity(validCity);
 
-    if (email && name && validEmail && validName) {
+    if (
+      email &&
+      name &&
+      phone &&
+      city &&
+      validEmail &&
+      validName &&
+      validPhone &&
+      validCity
+    ) {
       setIsLoading(true);
       try {
         const response = await fetch(
@@ -97,14 +124,15 @@ export default function LandingPage() {
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ name, email }),
+            body: JSON.stringify({ name, email, phone, city }),
           }
         );
-
         if (response.ok) {
           setIsSubmitted(true);
           setEmail("");
           setName("");
+          setPhone("");
+          setCity("");
         }
       } catch (err) {
         console.error(err);
@@ -202,6 +230,7 @@ export default function LandingPage() {
                 Be the First to Experience Magic
               </h3>
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Name and Email Row */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <input
                     type="text"
@@ -228,6 +257,34 @@ export default function LandingPage() {
                     required
                   />
                 </div>
+                {/* Phone and City Row */}
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <input
+                    type="tel"
+                    value={phone}
+                    onChange={handlePhoneChange}
+                    placeholder="Enter your phone number"
+                    className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                      !isValidPhone
+                        ? "border-red-400 focus:ring-red-400/50"
+                        : "border-white/30 focus:ring-purple-400/50"
+                    }`}
+                    required
+                  />
+                  <input
+                    type="text"
+                    value={city}
+                    onChange={handleCityChange}
+                    placeholder="Enter your city"
+                    className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
+                      !isValidCity
+                        ? "border-red-400 focus:ring-red-400/50"
+                        : "border-white/30 focus:ring-purple-400/50"
+                    }`}
+                    required
+                  />
+                </div>
+                {/* Error messages */}
                 {!isValidName && (
                   <p className="text-red-300 text-xs mt-1 text-left">
                     Please enter your name (min 2 chars)
@@ -238,8 +295,17 @@ export default function LandingPage() {
                     Please enter a valid email address
                   </p>
                 )}
-
-                {/* Button centered, not full width */}
+                {!isValidPhone && (
+                  <p className="text-red-300 text-xs mt-1 text-left">
+                    Please enter a valid phone number (8-15 digits)
+                  </p>
+                )}
+                {!isValidCity && (
+                  <p className="text-red-300 text-xs mt-1 text-left">
+                    Please enter your city (min 2 chars)
+                  </p>
+                )}
+                {/* Button */}
                 <div className="flex justify-center">
                   <Button
                     type="submit"
@@ -247,12 +313,14 @@ export default function LandingPage() {
                       isLoading ||
                       !email ||
                       !name ||
+                      !phone ||
+                      !city ||
                       !isValidEmail ||
-                      !isValidName
+                      !isValidName ||
+                      !isValidPhone ||
+                      !isValidCity
                     }
-                    className="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-lg px-6 py-3 cursor-pointer
-                     font-semibold transition-all duration-300 hover:scale-105 shadow-lg  
-                     disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                    className="bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-lg px-6 py-3 cursor-pointer font-semibold transition-all duration-300 hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                   >
                     {isLoading ? "Sending..." : "Join the Healing Journey"}
                   </Button>
