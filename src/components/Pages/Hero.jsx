@@ -91,8 +91,9 @@ export default function LandingPage() {
   };
   const handleCityChange = (e) => {
     const value = e.target.value;
-    setCity(value);
-    setIsValidCity(value ? validateCity(value) : true);
+    const lettersOnly = value.replace(/[^A-Za-z\s]/g, "");
+    setCity(lettersOnly);
+    setIsValidCity(lettersOnly ? validateCity(lettersOnly) : true);
   };
 
   const handleSubmit = async (e) => {
@@ -277,6 +278,8 @@ export default function LandingPage() {
                     value={city}
                     onChange={handleCityChange}
                     placeholder="Enter your city"
+                    pattern="[A-Za-z\s]+"
+                    title="City name should only contain letters"
                     className={`flex-1 px-4 py-3 bg-white/10 backdrop-blur-sm border rounded-lg text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:border-transparent transition-all duration-300 ${
                       !isValidCity
                         ? "border-red-400 focus:ring-red-400/50"
