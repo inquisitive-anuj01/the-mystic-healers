@@ -80,15 +80,17 @@ export default function LandingPage() {
     setIsValidEmail(value ? validateEmail(value) : true);
   };
   const handleNameChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/[^A-Za-z\s]/g, "");
     setName(value);
     setIsValidName(value ? validateName(value) : true);
   };
+
   const handlePhoneChange = (e) => {
-    const value = e.target.value;
+    const value = e.target.value.replace(/[^0-9]/g, "");
     setPhone(value);
     setIsValidPhone(value ? validatePhone(value) : true);
   };
+
   const handleCityChange = (e) => {
     const value = e.target.value;
     const lettersOnly = value.replace(/[^A-Za-z\s]/g, "");
